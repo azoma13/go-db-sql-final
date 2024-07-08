@@ -76,6 +76,10 @@ func (s ParcelStore) GetByClient(client int) ([]Parcel, error) {
 
 		res = append(res, p)
 	}
+	err = rows.Err()
+	if err != nil {
+		return nil, fmt.Errorf("could not read the line at the given client: %w", err)
+	}
 	return res, nil
 }
 
